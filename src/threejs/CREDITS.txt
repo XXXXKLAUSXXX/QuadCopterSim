@@ -1,0 +1,5 @@
+All files in this folder and subfolders are downloaded from:
+https://cdn.jsdelivr.net/npm/three@0.177.0/build/
+https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/
+
+No modifications were made.
