@@ -1,13 +1,17 @@
 # Quadcopter Simulator in C and Three.js
 
+[🌐 Run on your browser](https://pavanandrea.github.io/qprop.c/webgui/index.html)
+
 This is a basic quadcopter simulator built using Three.js as a fun weekend project.
 The simulator solves the nonlinear dynamics of a quadcopter, taking into account the equations of motion of the body, the dynamics of the four rotors and the battery charge.
 The included controller uses a simple proportional control in ACRO mode, controlling angular rates based on linearized dynamics, without any thrust compensation.
 
+[![Screenshot](./docs/screenshot.png)](https://pavanandrea.github.io/qprop.c/webgui/index.html)
+
 
 ## 🚀 Getting started
 
-The easiest way to run the simulator is from a web browser.
+The easiest way to run the simulator is from your [web browser](https://pavanandrea.github.io/QuadcopterFlightSimulator/src/index.html)
 The simulator will render a 3D quadcopter model, and you can control it using a keyboard (WASD for roll/pitch, arrows for thrust/yaw).
 
 
