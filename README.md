@@ -1,4 +1,4 @@
-# Quadcopter Simulator in C and Three.js
+# Quadcopter Flight Simulator in C and Three.js
 
 [🌐 Run on your browser](https://pavanandrea.github.io/QuadcopterFlightSimulator/src/index.html)
 
@@ -23,7 +23,7 @@ As this is a weekend project, several assumptions were made to simplify the mode
 - [x] Effect of temperature is neglected
 - [x] Constant friction torque
 - [x] Propeller thrust and torque approximated with fixed-point performance (J=0)
-- [x] Secondary aerodynamic effects are neglected (propeller cross-flow, P-factor, propeller wakes, rotation rates, influence of the frame...)
+- [x] Secondary aerodynamic effects are neglected (propeller cross-flow, P-factor, propeller wakes, vortex ring, ground effect, rotation rates, influence of the frame...)
 - [x] Coriolis effect is neglected
 
 These assumptions have a strong influence on the accuracy of the simulation.
