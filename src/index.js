@@ -95,12 +95,17 @@ const retrieve_simulation_time = Module.cwrap('retrieve_simulation_time', 'numbe
 
 //allocate useful variables
 const pilot_input = [0.5, 0.5, 0.3, 0.5];
+let Cb = 5000.0;
 let phi = 0.0;
 let theta = 0.0;
 let psi = 0.0;
 let x = 0.0;
 let y = 0.0;
 let z = 0.0;
+let Ux = 0.0;
+let Uy = 0.0;
+let Uz = 0.0;
+let Uinf = 0.0;
 let simulation_time = 0.0;
 
 //load quadcopter
@@ -134,16 +139,20 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
         //update quadcopter position
         set_pilot_input(pilot_input[0], pilot_input[1], pilot_input[2], pilot_input[3]);
         simulate(dt);
+        Cb = retrieve_state_variable(0)/3.6;
         phi = retrieve_state_variable(5);
         theta = retrieve_state_variable(6);
         psi = retrieve_state_variable(7);
         x = retrieve_state_variable(8);
         y = retrieve_state_variable(9);
         z = retrieve_state_variable(10);
+        Ux = retrieve_state_variable(14);
+        Uy = retrieve_state_variable(15);
+        Uz = retrieve_state_variable(16);
+        Uinf = Math.sqrt(Ux**2 + Uy**2 + Uz**2);
         simulation_time = retrieve_simulation_time();
         quadcopter.rotation.set(-theta-3.14159/2, phi, psi, "XYZ");
         floor.position.x = y%(floorSize/2);
-        //floor.position.y = -z%(floorSize/2);
         floor.position.y = -z;
         floor.position.z = x%(floorSize/2);
         
@@ -166,9 +175,14 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
         controls.update();
         renderer.render(scene, camera);
         stats.update();
-        const simulationMinutesString = (Math.floor(simulation_time/60)).toString().padStart(2, '0');
-        const simulationSecondsString = (Math.floor(simulation_time%60)).toString().padStart(2, '0');
-        document.getElementById("timeOverlay").innerText = simulationMinutesString + ":" + simulationSecondsString;
+
+        //update Primary Flight Display
+        const timeOverlayMinutes = (Math.floor(simulation_time/60)).toString().padStart(2, '0');
+        const timeOverlaySeconds = (Math.floor(simulation_time%60)).toString().padStart(2, '0');
+        document.getElementById("timeOverlay").innerText = timeOverlayMinutes + ":" + timeOverlaySeconds;
+        document.getElementById("batteryOverlay").innerText = "🔋 " + Math.round(100*Cb/5000).toString() + "%";
+        document.getElementById("altitudeIndicator").innerText = z.toFixed(1).toString().padStart(5, '0') + "m";
+        document.getElementById("speedIndicator").innerText = Math.round(Uinf).toString().padStart(2, '0') + "km/h";
     });
 });
 
@@ -180,10 +194,18 @@ function pauseResume() {
         renderer.render(scene, camera);
         document.getElementById("pauseOverlay").style.display = "block";
         document.getElementById("timeOverlay").classList.add("paused");
+        document.getElementById("batteryOverlay").classList.add("paused");
+        document.getElementById("flightModeOverlay").classList.add("paused");
+        document.getElementById("altitudeOverlay").classList.add("paused");
+        document.getElementById("speedOverlay").classList.add("paused");
     }
     else {
         document.getElementById("pauseOverlay").style.display = "none";
         document.getElementById("timeOverlay").classList.remove("paused");
+        document.getElementById("batteryOverlay").classList.remove("paused");
+        document.getElementById("flightModeOverlay").classList.remove("paused");
+        document.getElementById("altitudeOverlay").classList.remove("paused");
+        document.getElementById("speedOverlay").classList.remove("paused");
     }
 }
 

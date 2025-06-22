@@ -89,11 +89,11 @@ void simulate(double tf) {
             state_new[16] = 0.0;        //Uz=0
             state_new[5] = 0.0;         //ϕ=0
             state_new[6] = 0.0;         //θ=0
-            state_new[15] *= 0.999;     //slow down Uy
+            state_new[15] *= 0.995;     //slow down Uy
             if (fabs(state_new[15]) <= 0.01) {
                 state_new[15] = 0.0;
             }
-            state_new[14] *= 0.999;     //slow down Ux
+            state_new[14] *= 0.995;     //slow down Ux
             if (fabs(state_new[14]) <= 0.01) {
                 state_new[14] = 0.0;
             }

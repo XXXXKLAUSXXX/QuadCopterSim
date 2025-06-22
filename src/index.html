@@ -55,7 +55,25 @@
 
 
     <!-- Primary Flight Display overlay -->
-    <div id="timeOverlay" class="paused">00:00</div>
+    <div id="primaryFlightDisplayOverlay">
+        <div id="timeOverlay" class="paused">00:00</div>
+        <div id="batteryOverlay" class="paused">&#128267; 100%</div>
+        <div id="flightModeOverlay" class="paused">
+            Mode:
+            <select id="flightModeSelect">
+                <option value="ACRO">ACRO</option>
+            </select>
+        </div>
+        <div id="altitudeOverlay" class="paused">
+            <div id="altitudeLabel">Altitude</div>
+            <div id="altitudeIndicator">000.0m</div>
+        </div>
+        <div id="speedOverlay" class="paused">
+            <div id="speedLabel">Airspeed</div>
+            <div id="speedIndicator">00km/h</div>
+        </div>
+    </div>
+
 
     <!-- define an importmap to correctly load STLLoader and other addons -->
     <!-- that start with "import {...} from 'three';" -->
