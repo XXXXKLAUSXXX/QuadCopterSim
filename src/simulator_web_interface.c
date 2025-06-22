@@ -75,8 +75,12 @@ void simulate(double tf) {
         propagate_state(state_new, state_previous, motors_pwm, dt);
         
         //fully-discharged battery
-        if (state_new[0] <= 0) {
-            state_new[0] = 0;           //Cb=0
+        if (state_new[0] <= 0.0) {
+            state_new[0] = 0.0;         //Cb=0
+            state_new[1] = 0.0;         //shut down motor #1
+            state_new[2] = 0.0;         //shut down motor #2
+            state_new[3] = 0.0;         //shut down motor #3
+            state_new[4] = 0.0;         //shut down motor #4
         }
         
         //on the ground

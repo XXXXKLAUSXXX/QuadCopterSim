@@ -12,74 +12,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Quadcopter Simulator</title>
-    <style>
-        body {
-            margin: 0;
-            overflow-y: hidden;
-            user-select: none;
-        }
-        canvas {
-            display: block;
-        }
-        #pauseOverlay {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 24pt;
-            text-align: center;
-            padding-top: 20%;
-            display: block;
-        }
-        #pauseOverlay .h1 {
-            font-size: 48pt;
-            margin-bottom: 20px;
-        }
-        #timeOverlay {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: rgba(255, 255, 255, 0.5);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 24pt;
-        }
-        #timeOverlay.paused {
-            color: rgba(100, 100, 100, 0.5);
-        }
-        #quickMenuOverlay {
-            position: absolute;
-            top: 10px;
-            left: 100px;
-        }
-        #quickMenuOverlay a {
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 18pt;
-            text-decoration: none;
-        }
-        #quickMenuOverlay a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <meta charset="UTF-8"/>
+    <title>Quadcopter Flight Simulator</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
     <!-- pause overlay -->
     <div id="pauseOverlay">
-        <h1>Pause</h1>
-        Controls: WASD for roll/pitch, arrows (&uarr;&darr;&larr;&rarr;) for thrust/yaw
-        <br/>
-        Press ESC to resume simulation
+        <div class="top-text">
+            <kbd>
+                &#127302;&#127280;&#127298;&#127283; to roll/pitch
+                <br/>
+                &#11014;&#11013;&#11015;&#10145; for thrust/yaw
+                <br/>
+                &#127295;&#27; to pause/resume
+                <p style="color: red;">Flight simulation PAUSED</p>
+            </kbd>
+        </div>
+        <div class="menu">
+            <div class="menu-item" id="resumeFlight">Resume Flight</div>
+            <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator" target="_blank" style="color: white; text-decoration: none;">
+                <div class="menu-item" id="github">GitHub</div>
+            </a>
+            <div class="menu-item" id="creditsButton">Credits</div>
+        </div>
     </div>
 
-    <!-- running overlay -->
+    <!-- credits window -->
+    <div id="creditsWindow" style="display: none;">
+        <div class="header">
+            <span>Credits</span>
+            <button id="creditsWindowCloseButton"><kbd>X</kbd></button>
+        </div>
+        <div class="content">
+            <p>Developer: <a href="https://github.com/pavanandrea?tab=repositories" target="_blank">Andrea Pavan</a></p>
+            <p>License: <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator/blob/main/LICENSE" target="_blank">MIT</a></p>
+            <p>All artwork (3d models, textures, etc...) is 100% self-made and licensed under <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator/blob/main/LICENSE" target="_blank">CC-BY 4.0</a>.</p>
+            <p>Basically, you can do whatever you want with my work, as long as you provide credit.</p>
+            <p>This project would not have been possible without the amazing <a href="https://threejs.org/Three.js" target="_blank">ThreeJS</a> library and the <a href="https://emscripten.org/" target="_blank">Emscripten</a> compiler.</p>
+        </div>
+    </div>
+
+
+    <!-- Primary Flight Display overlay -->
     <div id="timeOverlay" class="paused">00:00</div>
-    <div id="quickMenuOverlay"><a href="https://github.com/pavanandrea/QuadcopterFlightSimulator" target="_blank">GitHub</a></div>
 
     <!-- define an importmap to correctly load STLLoader and other addons -->
     <!-- that start with "import {...} from 'three';" -->
@@ -97,4 +73,3 @@
     <script type="module" src="index.js"></script>
 </body>
 </html>
-

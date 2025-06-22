@@ -94,7 +94,7 @@ const retrieve_state_variable = Module.cwrap('retrieve_state_variable', 'number'
 const retrieve_simulation_time = Module.cwrap('retrieve_simulation_time', 'number', ['void']);
 
 //allocate useful variables
-const pilot_input = [0.5, 0.5, 0.4, 0.5];
+const pilot_input = [0.5, 0.5, 0.3, 0.5];
 let phi = 0.0;
 let theta = 0.0;
 let psi = 0.0;
@@ -115,8 +115,9 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
     quadcopter.receiveShadow = true;
     scene.add(quadcopter);
     controls.target = new THREE.Vector3(quadcopter.position.x, quadcopter.position.y, quadcopter.position.z);
+    renderer.render(scene, camera);
 
-    //animate the scene
+    //animate scene
     let lastFrameTime = 0;
     renderer.setAnimationLoop((timestamp) => {
         if (paused) {
@@ -142,7 +143,8 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
         simulation_time = retrieve_simulation_time();
         quadcopter.rotation.set(-theta-3.14159/2, phi, psi, "XYZ");
         floor.position.x = y%(floorSize/2);
-        floor.position.y = -z%(floorSize/2);
+        //floor.position.y = -z%(floorSize/2);
+        floor.position.y = -z;
         floor.position.z = x%(floorSize/2);
         
         //periodic terrain boundaries
@@ -159,7 +161,7 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
             floor.position.z -= floorSize/2;
         }
 
-        //rendering code
+        //render scene
         camera.lookAt(quadcopter.position);
         controls.update();
         renderer.render(scene, camera);
@@ -171,25 +173,35 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
 });
 
 
+//pause if running, or resume if paused
+function pauseResume() {
+    paused = !paused;
+    if (paused) {
+        renderer.render(scene, camera);
+        document.getElementById("pauseOverlay").style.display = "block";
+        document.getElementById("timeOverlay").classList.add("paused");
+    }
+    else {
+        document.getElementById("pauseOverlay").style.display = "none";
+        document.getElementById("timeOverlay").classList.remove("paused");
+    }
+}
+
+
 //handle window resize event
 window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    if (paused) {
+        renderer.render(scene, camera);
+    }
 });
 
-//handle escape button event
+//handle keyboard down event
 document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" || event.key === "p" || event.key === "P") {
-        paused = !paused;
-        if (paused) {
-            document.getElementById("pauseOverlay").style.display = "block";
-            document.getElementById("timeOverlay").classList.add("paused");
-        }
-        else {
-            document.getElementById("pauseOverlay").style.display = "none";
-            document.getElementById("timeOverlay").classList.remove("paused");
-        }
+        pauseResume();
     }
     
     if (event.key === "d" || event.key === "D") {
@@ -218,6 +230,7 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+//handle keyboard up event
 document.addEventListener("keyup", (event) => {
     if (event.key === "d" || event.key === "D") {
         pilot_input[0] = 0.5;
@@ -239,3 +252,15 @@ document.addEventListener("keyup", (event) => {
     }
 });
 
+//handle "Resume Flight" menu button click event
+document.getElementById("resumeFlight").addEventListener("click", () => {
+    pauseResume();
+});
+
+//handle "Credits" menu button click event
+document.getElementById("creditsButton").addEventListener("click", () => {
+    document.getElementById("creditsWindow").style.display = "block";
+});
+document.getElementById("creditsWindowCloseButton").addEventListener('click', () => {
+    document.getElementById("creditsWindow").style.display = "none";
+});
