@@ -33,6 +33,7 @@ double pilot_input[4] = {0.5, 0.5, 0.5, 0.5};
 double motors_pwm[4] = {0.5, 0.5, 0.5, 0.5};
 double gyro[3] = {0.0, 0.0, 0.0};
 double accel[3] = {0.0, 0.0, 0.0};
+double altitude = 0.1;
 double simulation_time = 0.0;
 double dt = 1e-3;
 
@@ -75,7 +76,9 @@ void simulate(double tf)
     accel[1] = state_previous[15];
     accel[2] = state_previous[16];
 
-    controller_p_acro(motors_pwm, pilot_input, gyro);
+    altitude = state_previous[10];
+
+    controller_p_acro(motors_pwm, pilot_input, gyro, accel, altitude);
     int imax = (int)round(tf / dt);
     for (int i = 1; i < imax; ++i)
     {
@@ -123,7 +126,14 @@ void simulate(double tf)
             gyro[0] = state_new[11];
             gyro[1] = state_new[12];
             gyro[2] = state_new[13];
-            controller_p_acro(motors_pwm, pilot_input, gyro);
+            
+            accel[0] = state_previous[14];
+            accel[1] = state_previous[15];
+            accel[2] = state_previous[16];
+
+            altitude = state_previous[10];
+
+            controller_p_acro(motors_pwm, pilot_input, gyro, accel, altitude);
         }
     }
     // clock_t time1 = clock();

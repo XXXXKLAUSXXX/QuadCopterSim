@@ -231,7 +231,7 @@ void rhs(double derivatives[17], double current_state[17], double motors_duty_cy
 //Duty cycle for each motor?
 //sticks x,y,x,y?
 //Gyro XYZ rot?
-void controller_p_acro(double duty_cycle[4], double sticks[4], double gyro[3]) {
+void controller_p_acro(double duty_cycle[4], double sticks[4], double gyro[3], double accel[3], double altitude) {
     //calculate the desired rates from the stick positions
     double dphitarget = -MAX_RP_RATE + 2*MAX_RP_RATE*sticks[0];     //desired roll rate (rad/s)
     double dthetatarget = -MAX_RP_RATE + 2*MAX_RP_RATE*sticks[1];   //desired pitch rate (rad/s)
