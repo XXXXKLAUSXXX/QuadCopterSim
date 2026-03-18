@@ -7,7 +7,9 @@
 #include <stdio.h>
 #include <emscripten/emscripten.h>
 #include <time.h>
-#include "simulator.c"
+// #include "simulator.c" // Redundant
+
+#include "./exampleController.h"
 
 double state_new[17];
 double state_previous[17] = {

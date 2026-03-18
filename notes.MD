@@ -1,8 +1,15 @@
+# Setup env
+Install EEMC compiler
 # Needs
 We need:
     Gyroscope input
     Accelerometer input
     Motor output
+
+# Up next
+
+Rewriting controller_p_acro to allow a system control.
+then might add chaos and noise to inputs and outputs.
 
 # Reading from the sensors
 ## Altitude
