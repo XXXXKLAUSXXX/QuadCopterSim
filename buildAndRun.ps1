@@ -10,3 +10,5 @@ echo "starting server"
 ./startServer.ps1
 
 read-host -prompt "Hit enter..."
+stop-job "server"
+remove-job "server"
