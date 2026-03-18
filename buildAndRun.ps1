@@ -7,4 +7,6 @@ echo "Program complete"
 cd ./..
 
 echo "starting server"
-Start-Process powershell.exe "./startServer.ps1"
+Start-Job -ScriptBlock {".src/startServer.ps1"} 
+
+Read-Host -Prompt "Press any button to shut down"
