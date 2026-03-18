@@ -3,7 +3,7 @@
 
 #include "./simulator.c"
 
-double oldAltitude=0;
+double oldAltitude = 0;
 
 // proportional controller for acro/roll mode.
 // CONTROLLER_P_ACRO calculates the desired rates from the sticks and applies a
@@ -25,12 +25,13 @@ void controller_p_acro(double duty_cycle[4], double sticks[4], double gyro[3], d
         {
             duty_cycle[i] = 0.5;
         }
-        else{
+        else
+        {
             duty_cycle[i] = 0.6;
         }
-        
     }
 
+    // Update variables to store info
     oldAltitude = altitude;
 }
 

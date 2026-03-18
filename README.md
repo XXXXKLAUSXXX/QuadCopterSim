@@ -1,5 +1,7 @@
 # For custom controllers 
 Some information is in notes.md.
+## requirements
+emcc compiler.
 ## Changing the controller used
 Change the included controller header in /src/simulator_web_interface.c.
 ## Writing your own
