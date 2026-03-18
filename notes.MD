@@ -22,3 +22,5 @@ state_previous[14]-[16] in simulator_web_interface is used to store the speed of
 # Motor output
 Motors are driven in simulator.c controller_p_acro using a float ranging from 0 to 1
 Write to duty cycle[] to control the motors.
+
+# Cookbook
