@@ -1,5 +1,16 @@
-# Quadcopter Flight Simulator in C and Three.js
+# For custom controllers 
+Some information is in notes.md.
+## Changing the controller used
+Change the included controller header in /src/simulator_web_interface.c.
+## Writing your own
+1. Make a copy of the example controller. 
+2. Change the prog target to a representative const string.
 
+The controllers outputs are, likely, written to the dutyCycle array. The following arrays are merely for inputs. 
+
+# Testing your controller
+On windows: run buildAndRun.ps1. This will automatically build your program and run a server on your localhost:8084.
+# Quadcopter Flight Simulator in C and Three.js
 [🌐 Run on your browser](https://pavanandrea.github.io/QuadcopterFlightSimulator/src/index.html)
 
 This is a basic quadcopter simulator built using Three.js as a fun weekend project.

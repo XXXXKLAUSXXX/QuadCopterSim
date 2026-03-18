@@ -1,4 +1,4 @@
-#ifndef controllerTarg 
+#ifndef controllerTarg
 #define controllerTarg "example"
 
 #include "./simulator.c"
@@ -13,7 +13,14 @@ void controller_p_acro(double duty_cycle[4], double sticks[4], double gyro[3], d
 {
     for (int i = 0; i < 4; i++)
     {
-        duty_cycle[i] = 1;
+        if (altitude < 3)
+        {
+            duty_cycle[i] = 1;
+        }
+        else
+        {
+            duty_cycle[i] = 0.4;
+        }
     }
 }
 
