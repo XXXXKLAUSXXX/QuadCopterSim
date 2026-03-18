@@ -1,2 +1,3 @@
 cd ./src
-python3 -m http.server 8084 
+python3 -m http.server 8084
+cd ./.. 

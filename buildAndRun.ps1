@@ -7,4 +7,6 @@ echo "Program complete"
 cd ./..
 
 echo "starting server"
-Start-Process powershell.exe "./startServer.ps1"
+./startServer.ps1
+
+read-host -prompt "Hit enter..."
