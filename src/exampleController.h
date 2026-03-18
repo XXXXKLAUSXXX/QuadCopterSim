@@ -13,7 +13,7 @@ void controller_p_acro(double duty_cycle[4], double sticks[4], double gyro[3], d
 {
     for (int i = 0; i < 4; i++)
     {
-        duty_cycle[i] = 0;
+        duty_cycle[i] = 1;
     }
 }
 
