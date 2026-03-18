@@ -24,3 +24,4 @@ Motors are driven in simulator.c controller_p_acro using a float ranging from 0 
 Write to duty cycle[] to control the motors.
 
 # Cookbook
+## Build and run
