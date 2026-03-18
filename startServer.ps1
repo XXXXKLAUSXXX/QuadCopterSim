@@ -1,3 +1,6 @@
+# This script starts a server in the background of the current shell. 
+# The server terminates when the current process does. I recommend using 'read-host' to wait for the user to hit enter to prevent a premature shutdown.
+
 cd ./src
 
 start-job -scriptblock {
