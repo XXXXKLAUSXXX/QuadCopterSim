@@ -11,4 +11,4 @@ echo "starting server"
 
 read-host -prompt "Hit enter..."
 stop-job "server"
-remove-job "server"
+echo "shutdown complete"
