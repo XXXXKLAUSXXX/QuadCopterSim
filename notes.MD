@@ -7,7 +7,8 @@ We need:
     Motor output
 
 # Up next
-Updating index.js to also update the gyro and accelometers
+programming in a PID controller
+ Reading HTML values for PID settings
 # Reading from the sensors
 ## Altitude
 [10]
