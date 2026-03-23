@@ -7,10 +7,7 @@ We need:
     Motor output
 
 # Up next
-
-Rewriting controller_p_acro to allow a system control.
-then might add chaos and noise to inputs and outputs.
-
+Updating index.js to also update the gyro and accelometers
 # Reading from the sensors
 ## Altitude
 [10]
@@ -25,3 +22,5 @@ Write to duty cycle[] to control the motors.
 
 # Cookbook
 ## Build and run
+## Get variables from the C programs to the HTML page
+Done via index.js. line 180 //Update Primary Flight Display. Make sure to use cntrol+r to clear the cache.

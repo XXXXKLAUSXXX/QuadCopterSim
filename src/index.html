@@ -11,27 +11,30 @@
 ------------------------------------------------------------------------------->
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8" />
     <title>Quadcopter Flight Simulator</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
+
 <body>
     <!-- pause overlay -->
     <div id="pauseOverlay">
         <div class="top-text">
             <kbd>
                 &#127302;&#127280;&#127298;&#127283; to roll/pitch
-                <br/>
+                <br />
                 &#11014;&#11013;&#11015;&#10145; for thrust/yaw
-                <br/>
+                <br />
                 &#127295;&#27; to pause/resume
                 <p style="color: red;">Flight simulation PAUSED</p>
             </kbd>
         </div>
         <div class="menu">
             <div class="menu-item" id="resumeFlight">Resume Flight</div>
-            <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator" target="_blank" style="color: white; text-decoration: none;">
+            <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator" target="_blank"
+                style="color: white; text-decoration: none;">
                 <div class="menu-item" id="github">GitHub</div>
             </a>
             <div class="menu-item" id="creditsButton">Credits</div>
@@ -46,10 +49,15 @@
         </div>
         <div class="content">
             <p>Developer: <a href="https://github.com/pavanandrea?tab=repositories" target="_blank">Andrea Pavan</a></p>
-            <p>License: <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator/blob/main/LICENSE" target="_blank">MIT</a></p>
-            <p>All artwork (3d models, textures, etc...) is 100% self-made and licensed under <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator/blob/main/LICENSE" target="_blank">CC-BY 4.0</a>.</p>
+            <p>License: <a href="https://github.com/pavanandrea/QuadcopterFlightSimulator/blob/main/LICENSE"
+                    target="_blank">MIT</a></p>
+            <p>All artwork (3d models, textures, etc...) is 100% self-made and licensed under <a
+                    href="https://github.com/pavanandrea/QuadcopterFlightSimulator/blob/main/LICENSE"
+                    target="_blank">CC-BY 4.0</a>.</p>
             <p>Basically, you can do whatever you want with my work, as long as you provide credit.</p>
-            <p>This project would not have been possible without the amazing <a href="https://threejs.org/Three.js" target="_blank">ThreeJS</a> library and the <a href="https://emscripten.org/" target="_blank">Emscripten</a> compiler.</p>
+            <p>This project would not have been possible without the amazing <a href="https://threejs.org/Three.js"
+                    target="_blank">ThreeJS</a> library and the <a href="https://emscripten.org/"
+                    target="_blank">Emscripten</a> compiler.</p>
         </div>
     </div>
 
@@ -70,8 +78,23 @@
         </div>
         <div id="speedOverlay" class="paused">
             <div id="speedLabel">Airspeed</div>
-            <div id="speedIndicator">00km/h</div>
+            <div id="speedIndicator">00km/h</div><br>
         </div>
+        
+        <div id="gyroOverlay" > 
+            <div id="gyroLabel">Gyroscope</div>
+            <div id="gyroIndicatorYaw">pitch 000*</div>
+            <div id="gyroIndicatorPitch">__yaw 000*</div>
+            <div id="gyroIndicatorRoll">_roll 000*</div>
+        </div>
+        <div id="accelOverlay" > 
+            <div id="accelLabel">Accel</div>
+            <div id="accelIndicatorX">x 00 m/s</div>
+            <div id="accelIndicatorY">y 00 m/s</div>
+            <div id="accelIndicatorZ">z 00 m/s</div>
+        </div>
+    
+
     </div>
 
 
@@ -90,4 +113,5 @@
     <script type="text/javascript" src="simulator_web_interface.js"></script>
     <script type="module" src="index.js"></script>
 </body>
+
 </html>
