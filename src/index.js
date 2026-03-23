@@ -193,7 +193,7 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
 
         document.getElementById("gyroIndicatorRoll").innerText = "_Roll: " + Math.round(radiansToDegrees(phi)).toString().padStart(3, '0') + "*";
         document.getElementById("gyroIndicatorPitch").innerText = "Pitch: " + Math.round(radiansToDegrees(theta)).toString().padStart(3, '0') + "*";
-        document.getElementById("gyroIndicatorYaw").innerText = "__Yaw: " + Math.round(radiansToDegrees(psi)).toString().padStart(3, '0') + "*";
+        gyroIndicatorYaw.innerText = "__Yaw: " + Math.round(radiansToDegrees(psi)).toString().padStart(3, '0') + "*";
 
         /*
         (number)
