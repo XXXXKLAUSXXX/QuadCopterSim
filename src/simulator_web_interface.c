@@ -9,7 +9,8 @@
 #include <time.h>
 // #include "simulator.c" // Redundant
 
-#include "./exampleController.h"
+// #include "./exampleController.h"
+#include "./standardController.h"
 
 double state_new[17];
 double state_previous[17] = {
@@ -18,7 +19,7 @@ double state_previous[17] = {
     0.0,              // motor #2 speed ω2 (rad/s)
     0.0,              // motor #3 speed ω3 (rad/s)
     0.0,              // motor #4 speed ω4 (rad/s)
-    0.0,              // roll angle ϕ (rad)
+    0.0,              // roll angle ϕ (rad)         //5
     0.0,              // pitch angle θ (rad)
     0.0,              // yaw angle ψ (rad)
     0.0,              // position x (m)

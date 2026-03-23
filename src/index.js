@@ -176,13 +176,17 @@ loader.load("./assets/f450_quadcopter_lowpoly.stl", (quadcopterGeometry) => {
         renderer.render(scene, camera);
         stats.update();
 
-        //update Primary Flight Display
+        //update Primary Flight Display // Changing this script does not seem to change anything. Depricated?
         const timeOverlayMinutes = (Math.floor(simulation_time/60)).toString().padStart(2, '0');
         const timeOverlaySeconds = (Math.floor(simulation_time%60)).toString().padStart(2, '0');
         document.getElementById("timeOverlay").innerText = timeOverlayMinutes + ":" + timeOverlaySeconds;
         document.getElementById("batteryOverlay").innerText = "🔋 " + Math.round(100*Cb/5000).toString() + "%";
         document.getElementById("altitudeIndicator").innerText = z.toFixed(1).toString().padStart(5, '0') + "m";
         document.getElementById("speedIndicator").innerText = Math.round(Uinf).toString().padStart(2, '0') + "km/h";
+        // Ember's additions 
+        document.getElementById("gyroIndicatorRoll").innerText = "_" + Math.round(phi).toString().padStart(3, '0') + "*";
+        document.getElementById("gyroIndicatorPitch").innerText =  Math.round(theta).toString().padStart(3, '0') + "*";
+        document.getElementById("gyroIndicatorYaw").innerText = "__" + Math.round(psi).toString().padStart(3, '0') + "*";
     });
 });
 
