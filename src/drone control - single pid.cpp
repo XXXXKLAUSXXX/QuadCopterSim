@@ -111,32 +111,36 @@ void loop()
   int16_t rawAcX, rawAcY, rawAcZ;
   float AcX, AcY, AcZ;
   float roll, pitch;
-
-  Wire.beginTransmission(MPU_addr);
-  Wire.write(0x3B); // first register of accel measurements
-  Wire.endTransmission(false);
-  Wire.requestFrom(MPU_addr, 6, true); // request 6 registers (x, y and z accel)
-
-  if (Wire.available() == 6)
   {
-    rawAcX = Wire.read() << 8 | Wire.read(); // first read brings highest bits to the left, second fills in the rest with the lower 8 bits
-    rawAcY = Wire.read() << 8 | Wire.read();
-    rawAcZ = Wire.read() << 8 | Wire.read();
-    AcX = (float)rawAcX / 16384.0; // divide by LSB Sensitivity
-    AcY = (float)rawAcY / 16384.0;
-    AcZ = (float)rawAcZ / 16384.0;
+    Wire.beginTransmission(MPU_addr);
+    Wire.write(0x3B); // first register of accel measurements
+    Wire.endTransmission(false);
+    Wire.requestFrom(MPU_addr, 6, true); // request 6 registers (x, y and z accel)
 
-    roll = AcY * 90;
-    pitch = AcX * 90;
-  }
-  else
-  {
-    newAvg = false;
-  }
+    if (Wire.available() == 6)
+    {
+      rawAcX = Wire.read() << 8 | Wire.read(); // first read brings highest bits to the left, second fills in the rest with the lower 8 bits
+      rawAcY = Wire.read() << 8 | Wire.read();
+      rawAcZ = Wire.read() << 8 | Wire.read();
+      AcX = (float)rawAcX / 16384.0; // divide by LSB Sensitivity
+      AcY = (float)rawAcY / 16384.0;
+      AcZ = (float)rawAcZ / 16384.0;
 
+      roll = AcY * 90;
+      pitch = AcX * 90;
+    }
+    else
+    {
+      newAvg = false;
+    }
+  }
   // --- Read gyroscope --- // Should be a function
   // These variables should be global to increase flexibility of your program.
   int16_t rawGyX, rawGyY, rawGyZ;
+  /*
+  unit: degrees
+  ranges: ? - ?
+  */
   float Gx, Gy;
   {
     Wire.beginTransmission(MPU_addr);
