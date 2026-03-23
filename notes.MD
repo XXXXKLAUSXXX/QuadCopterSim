@@ -23,4 +23,4 @@ Write to duty cycle[] to control the motors.
 # Cookbook
 ## Build and run
 ## Get variables from the C programs to the HTML page
-Done via index.js. line 180 //Update Primary Flight Display. Apparantly this does not work? You can delete all the JS that seemingly updates the stuff and get no results.
+Done via index.js. line 180 //Update Primary Flight Display. Make sure to use cntrol+r to clear the cache.

@@ -28,7 +28,7 @@ double state_previous[17] = {
     0.0,              // roll rate ∂ϕ/∂t (rad/s)
     0.0,              // pitch rate ∂θ/∂t (rad/s)
     0.0,              // yaw rate ∂ψ/∂t (rad/s)
-    0.0,              // horizontal speed Ux (m/s)
+    0.0,              // horizontal speed Ux (m/s) // 14
     0.0,              // horizontal speed Uy (m/s)
     0.0               // vertical speed Uz (m/s)
 };
